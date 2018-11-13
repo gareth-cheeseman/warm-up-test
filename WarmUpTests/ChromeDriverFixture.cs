@@ -12,10 +12,10 @@ namespace WarmUpTests
 
         public ChromeDriverFixture()
         {
-            var options = new ChromeOptions();
-                options.AddArgument("headless");
+            //var options = new ChromeOptions();
+            //    options.AddArgument("headless");
             
-            Driver = new ChromeDriver(options);
+            Driver = new ChromeDriver();
         }
 
         public void Dispose()

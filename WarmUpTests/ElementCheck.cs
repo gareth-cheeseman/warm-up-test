@@ -2,39 +2,25 @@
 using System.Collections.Generic;
 using System.Text;
 using OpenQA.Selenium;
-using Xunit;
 
 namespace WarmUpTests
 {
-    public class ElementCheck : IClassFixture<ChromeDriverFixture>
+    public static class ElementCheck
     {
-        private readonly ChromeDriverFixture _fixture;
-
-        public ElementCheck(ChromeDriverFixture fixture)
+        public static bool IsElementVisible(this IWebDriver driver, string expression)
         {
-            _fixture = fixture;
-        }
-
-        [Theory]
-        [JsonFileData("data.json")]
-        public void CheckElementExists(string url, string xpath, bool expectedResult)
-        {
-            _fixture.Driver.Navigate().GoToUrl(url);
-
-            bool actualResult;
-
+           
             try
             {
-                var element = _fixture.Driver.FindElement(By.XPath(xpath));
-                actualResult = element.Displayed;
+                var element = driver.FindElement(By.XPath(expression));
+                return element.Displayed;
 
             }
             catch (Exception)
             {
-                actualResult = false;
+                return false;
             }
-
-            Assert.Equal(expectedResult, actualResult);
         }
+
     }
 }
