@@ -7,12 +7,12 @@ using OpenQA.Selenium.Chrome;
 
 namespace WarmUpTests
 {
-    public class ChromeDriverFixture : IDisposable
+    public class ClientFixture : IDisposable
     {
         public IWebDriver Driver { get; }
         public HttpClient HttpClient { get; }
 
-        public ChromeDriverFixture()
+        public ClientFixture()
         {
             var options = new ChromeOptions();
             options.AddArgument("headless");

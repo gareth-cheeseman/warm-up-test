@@ -6,11 +6,11 @@ using Xunit;
 
 namespace WarmUpTests
 {
-    public class Theory : IClassFixture<ChromeDriverFixture>
+    public class Theory : IClassFixture<ClientFixture>
     {
-        private readonly ChromeDriverFixture _fixture;
+        private readonly ClientFixture _fixture;
 
-        public Theory(ChromeDriverFixture fixture)
+        public Theory(ClientFixture fixture)
         {
             _fixture = fixture;
         }
