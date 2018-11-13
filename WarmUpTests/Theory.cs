@@ -6,11 +6,11 @@ using Xunit;
 
 namespace WarmUpTests
 {
-    public class Theory : IClassFixture<ClientFixture>
+    public class Theory : IClassFixture<Fixture>
     {
-        private readonly ClientFixture _fixture;
+        private readonly Fixture _fixture;
 
-        public Theory(ClientFixture fixture)
+        public Theory(Fixture fixture)
         {
             _fixture = fixture;
         }

@@ -11,13 +11,13 @@ using OpenQA.Selenium.Chrome;
 
 namespace WarmUpTests
 {
-    public class ClientFixture : IDisposable
+    public class Fixture : IDisposable
     {
         public IWebDriver Driver { get; }
         public HttpClient HttpClient { get; }
         public string BaseUrl { get; }
 
-        public ClientFixture()
+        public Fixture()
         {
             using (var file = File.OpenText("Properties\\launchSettings.json"))
             {
