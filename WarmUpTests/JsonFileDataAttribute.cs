@@ -16,7 +16,7 @@ namespace WarmUpTests
         private readonly string _filePath;
 
         /// <summary>
-        /// Load data from a JSON file as the data source for a theory
+        ///     Load data from a JSON file as the data source for a theory
         /// </summary>
         /// <param name="filePath">The absolute or relative path to the JSON file to load</param>
         public JsonFileDataAttribute(string filePath)
@@ -48,13 +48,8 @@ namespace WarmUpTests
 
 
             var tests = JsonConvert.DeserializeObject<TestContainer>(fileData);
-            foreach (var test in tests.Tests)
-            {
-                Console.WriteLine(test.Name);
-            }
 
-            return tests.Tests.Select(x => new []{(object)x});
-            
+            return tests.Tests.Select(x => new[] {(object) x});
         }
     }
 }

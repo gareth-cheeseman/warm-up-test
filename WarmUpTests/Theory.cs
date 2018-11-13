@@ -17,52 +17,22 @@ namespace WarmUpTests
 
         [Theory]
         [JsonFileData("data.json")]
-        public void CheckElementExists(string url, TestType type, string xpath, bool expectedResult)
+        public void CheckPage(TestObject testObject)
         {
-            _fixture.Driver.Navigate().GoToUrl(url);
+            object  actualResult; 
 
-            bool actualResult;
-
-            try
+            switch (testObject.TestType)
             {
-                var element = _fixture.Driver.FindElement(By.XPath(xpath));
-                actualResult = element.Displayed;
-
-            }
-            catch (Exception)
-            {
-                actualResult = false;
+                case TestType.XPath:
+                    actualResult =  _fixture.Driver.IsElementVisible(testObject.Path ,testObject.Expression); break;
+                case TestType.HttpStatusCode:
+                    actualResult = _fixture.HttpClient.CheckStatus(testObject.Path); break;
+                default:
+                    actualResult = false; break;
             }
 
-            Assert.Equal(expectedResult, actualResult);
-        }
-
-
-
-        [Theory]
-        [JsonFileData("data.json")]
-        public void CheckElementExists2(TestObject testObject)
-        {
-            _fixture.Driver.Navigate().GoToUrl(testObject.Path);
-            var actualResult = _fixture.Driver.ActualResult(testObject.TestType, testObject.Expression);
             Assert.Equal(testObject.Expectation, actualResult);
         }
-
-        public static IEnumerable<object[]> Data =>
-            new List<object[]>
-            {
-                new object[]
-                {
-                    new TestObject("Shop", TestType.XPath, "https://shop.edintattoo.co.uk", true,
-                        "//h1[contains(text(), 'Shop')]")
-                },
-
-                new object[]
-                {
-                    new TestObject("Shop", TestType.XPath, "https://shop.edintattoo.co.uk", false,
-                        "//h1[contains(text(), 'Shop')]")
-                }
-            };
 
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace WarmUpTests
 {
@@ -11,6 +13,8 @@ namespace WarmUpTests
     public class TestObject 
     {
         public string Name;
+        [JsonProperty("type")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public TestType TestType;
         public string Path;
         public string Expression;
@@ -21,14 +25,9 @@ namespace WarmUpTests
                 
         }
 
-        public TestObject(string name, TestType testType, string path, bool expectation, string expression = null)
+        public override string ToString()
         {
-            Name = name;
-            TestType = testType;
-            Path = path;
-            Expression = expression;
-            Expectation = expectation;
+            return this.Name;
         }
-
     }
 }

@@ -7,9 +7,11 @@ namespace WarmUpTests
 {
     public static class ElementCheck
     {
-        public static bool IsElementVisible(this IWebDriver driver, string expression)
+        public static bool IsElementVisible(this IWebDriver driver,string path, string expression)
         {
-           
+
+            driver.Navigate().GoToUrl(path);
+
             try
             {
                 var element = driver.FindElement(By.XPath(expression));

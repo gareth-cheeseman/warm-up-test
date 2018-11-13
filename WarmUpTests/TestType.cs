@@ -2,7 +2,8 @@
 {
     public enum TestType
     {
+        HttpStatusCode,
         XPath,
-        HttpStatusCode
+        
     } 
 }
