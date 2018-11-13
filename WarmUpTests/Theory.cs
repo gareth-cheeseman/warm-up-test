@@ -19,14 +19,15 @@ namespace WarmUpTests
         [JsonFileData("data.json")]
         public void CheckPage(TestObject testObject)
         {
-            object  actualResult; 
+            object  actualResult;
+            var completeUrl = _fixture.BaseUrl + testObject.Path;
 
             switch (testObject.TestType)
             {
                 case TestType.XPath:
-                    actualResult =  _fixture.Driver.IsElementVisible(testObject.Path ,testObject.Expression); break;
+                    actualResult =  _fixture.Driver.IsElementVisible(completeUrl, testObject.Expression); break;
                 case TestType.HttpStatusCode:
-                    actualResult = _fixture.HttpClient.CheckStatus(testObject.Path); break;
+                    actualResult = _fixture.HttpClient.CheckStatus(completeUrl); break;
                 default:
                     actualResult = false; break;
             }
