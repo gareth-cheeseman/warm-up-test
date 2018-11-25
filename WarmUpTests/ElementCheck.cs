@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.VisualBasic;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
+
 
 namespace WarmUpTests
 {
@@ -14,8 +18,8 @@ namespace WarmUpTests
 
             try
             {
-                var element = driver.FindElement(by);
-                return element.Displayed;
+                new WebDriverWait(driver, TimeSpan.FromSeconds(5)).Until(ExpectedConditions.ElementIsVisible((by)));
+                return true;
 
             }
             catch (Exception)
