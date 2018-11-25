@@ -3,7 +3,7 @@
     public enum TestType
     {
         HttpStatusCode,
-        XPath,
-        
-    } 
+        CssSelector,
+        XPath
+    }
 }

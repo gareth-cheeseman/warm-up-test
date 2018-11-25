@@ -24,8 +24,10 @@ namespace WarmUpTests
 
             switch (testObject.TestType)
             {
+                case TestType.CssSelector:
+                    actualResult = _fixture.Driver.IsElementVisible(completeUrl, testObject.Expression.CssSelector()); break;
                 case TestType.XPath:
-                    actualResult =  _fixture.Driver.IsElementVisible(completeUrl, testObject.Expression); break;
+                    actualResult =  _fixture.Driver.IsElementVisible(completeUrl, testObject.Expression.XPath()); break;
                 case TestType.HttpStatusCode:
                     actualResult = _fixture.HttpClient.CheckStatus(completeUrl); break;
                 default:
