@@ -47,9 +47,9 @@ namespace WarmUpTests
             var fileData = File.ReadAllText(_filePath);
 
 
-            var tests = JsonConvert.DeserializeObject<TestContainer>(fileData);
+            var container = JsonConvert.DeserializeObject<TestContainer>(fileData);
 
-            return tests.Tests.Select(x => new[] {(object) x});
+            return container.Tests.Select(x => new[] {(object) x});
         }
     }
 }
